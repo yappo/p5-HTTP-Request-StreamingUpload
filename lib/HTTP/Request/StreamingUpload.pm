@@ -34,6 +34,7 @@ sub _set_content {
             $fh = $args->{fh};
         } else {
             open $fh, '<', $args->{path} or Carp::croak "$args->{path}: $!";
+            binmode($fh);
         }
         my $chunk_size = $args->{chunk_size} || 4096;
         $req->content(sub {
